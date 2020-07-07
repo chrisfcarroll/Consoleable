@@ -15,7 +15,12 @@
     "xunit": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "true"
+      "defaultValue": "false"
+    },
+    "nunit": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
   "sources":[{
