@@ -1,45 +1,23 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System;
 using Microsoft.Extensions.Logging;
 
 namespace Consoleable
 {
-    /// <summary>
-    /// A component which …
-    /// </summary>
+    /// <summary>A component which … </summary>
     public class Consoleable
     {
-        /// <summary>Summary</summary>
-        /// <param name="someFiles"></param>
-        /// <param name="someKeys"></param>
-        /// <returns></returns>
-        public bool Do( FileInfo[] someFiles, Dictionary<string,string> someKeys)
+        public void Do()
         {
-            var paramsOk=SanitiseAndValidateParameters(someFiles, ref someKeys);
-            return false;
-        }
-
-        bool SanitiseAndValidateParameters(FileInfo[] someFiles, ref Dictionary<string,string> someKeys)
-        {
-            someKeys ??= new Dictionary<string, string>();
-            var parametersAreValid = someKeys.Count==0 ||  someKeys.First().Key!="exampleError";
-            
-            log.Log(parametersAreValid ? LogLevel.Information:LogLevel.Error,
-                "Called with {files} {@keys}", 
-                someFiles.Select(f => f.Name), 
-                someKeys.Select(kv => $"{kv.Key}={kv.Value}"));
-            
-            return parametersAreValid;
+            log.LogDebug("Called on {@OS}", Environment.OSVersion);
         }
 
         public Consoleable(ILogger log, Settings settings)
         {
             this.log = log;
             this.settings = settings;
+            log.LogDebug("Created with Settings={@Settings", settings);
         }
         readonly ILogger log;
         readonly Settings settings;
-
     }
 }

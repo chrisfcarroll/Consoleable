@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Consoleable.Dependencies;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ILogger = Microsoft.Extensions.Logging.ILogger;

@@ -14,19 +14,19 @@ namespace Consoleable.SelfHosting
         public static void Main(params string[] args)
         {
             var (someFiles,someKeys) = 
-                ValidateParametersElseShowHelpTextAndExitImmediately(args);
-
+                    ValidateExampleParametersElseShowHelpTextAndExit(args);
+            
             Startup.Configure();
             
-            new Consoleable(
+        new Consoleable(
                 Startup.CreateLogger<Consoleable>(),
                 Startup.Settings
-            ).Do(someFiles, someKeys);
+            ).Do();
         }
 
         static 
             (FileInfo[] someFiles, Dictionary<string, string> someKeys) 
-                ValidateParametersElseShowHelpTextAndExitImmediately(string[] args)
+                ValidateExampleParametersElseShowHelpTextAndExit(string[] args)
         {
             ShowHelpTextAndExitImmediatelyIf(shouldShowHelpThenExit: args.Length == 0);
             ShowHelpTextAndExitImmediatelyIf(HelpOptions.Contains(args[0].TrimStart('/').TrimStart('-')));
@@ -38,15 +38,15 @@ namespace Consoleable.SelfHosting
         static readonly string[] HelpOptions = {"?", "h","help"};
 
         const string ConsoleHelpText = @"
-Consoleable filename1 filename2 key1=value1 key2=value2 
+Consoleable [your parameters here, for instance: [filename1 [filename2]] [key1=value1 [key2=value2]]] 
 
     Modify this help text to show the parameters usable by your component from a console command line
 
-    You might mention that Settings can be read from the appSettings.json file.
+    You might mention that Settings can be read from the appsettings.json file.
     
     Example:
 
-    Consoleable somefilename.txt this=This that=That
+    Consoleable simple example of parameters
 
 ";
         static class ParseArgs

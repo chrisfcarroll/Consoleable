@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace Consoleable.SelfHosting
+namespace Consoleable.Dependencies
 {
     public static class StringJsonExtensions
     {
@@ -13,7 +13,7 @@ namespace Consoleable.SelfHosting
         /// <paramref name="value"/> serialized as a json string,
         /// or else <paramref name="defaultIfSerializationError"/> if there is an error during Serialization.
         /// </returns>
-        public static string AsJsonElse<T>(this T value, string defaultIfSerializationError=null)
+        public static string AsJsonElse<T>(this T value, string defaultIfSerializationError)
         {
             try{ return JsonSerializer.Serialize(value); }
             catch { return defaultIfSerializationError; }
@@ -21,18 +21,14 @@ namespace Consoleable.SelfHosting
 
         /// <summary>Serialize <paramref name="value"/> as a Json string.</summary>
         /// <param name="value">the object to serialize</param>
-        /// serialization</param>
-        /// <typeparam name="T"></typeparam>
         /// <returns>
         /// <paramref name="value"/> serialized as a json string,
         /// or else null if there is an error during Serialization.
         /// </returns>
-        public static string AsJsonElseNull<T>(this T value) => AsJsonElse(value, null);
+        public static string AsJsonElseNull<T>(this T value) => AsJsonElse(value,null);
         
         /// <summary>Serialize <paramref name="value"/> as a Json string.</summary>
         /// <param name="value">the object to serialize</param>
-        /// serialization</param>
-        /// <typeparam name="T"></typeparam>
         /// <returns>
         /// <paramref name="value"/> serialized as a json string,
         /// or else an empty string if there is an error during Serialization.
