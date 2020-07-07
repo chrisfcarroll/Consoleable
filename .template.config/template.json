@@ -10,5 +10,23 @@
     "type": "project"
   },
   "sourceName": "Consoleable",
-  "preferNameDirectory": true
+  "preferNameDirectory": true,
+  "symbols":{
+    "xunit": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true"
+    }
+  },
+  "sources":[{
+    "modifiers": [{
+      "condition": "(!xunit)",
+      "exclude": [ "Consoleable.Specx/**/*"]
+    },
+    {
+      "condition": "(!nunit)",
+      "exclude": [ "Consoleable.Specs/**/*"]
+    }
+    ]
+  }]
 }
