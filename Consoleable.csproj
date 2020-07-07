@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include=".template.config\template.json" />
     <Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
