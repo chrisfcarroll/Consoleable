@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Consoleable.SelfHosting
 {
@@ -28,10 +29,13 @@ namespace Consoleable.SelfHosting
                 ValidateParametersElseShowHelpTextAndExitImmediately(string[] args)
         {
             ShowHelpTextAndExitImmediatelyIf(shouldShowHelpThenExit: args.Length == 0);
+            ShowHelpTextAndExitImmediatelyIf(HelpOptions.Contains(args[0].TrimStart('/').TrimStart('-')));
             var (someFiles, someKeys) = ParseArgs.GetSomeFileNamesAndKeys(args);
             ShowHelpTextAndExitImmediatelyIf(someFiles.Length == 0);
             return (someFiles,someKeys);
         }
+
+        static readonly string[] HelpOptions = {"?", "h","help"};
 
         const string ConsoleHelpText = @"
 Consoleable filename1 filename2 key1=value1 key2=value2 
