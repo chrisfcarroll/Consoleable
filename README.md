@@ -29,7 +29,14 @@ Because
 2. It addresses the concerns of being a command-line tool for you, out of the box, saving you the grunt work.
 3. You can easily replace the opinions with your own.
 
-## What Opionions did you carefully avoid?
+### Why is it better than `dotnet new classlib`?
+
+Because really, who doesn't secretly want their components to be independently runnable and testable from the commandline?
+
+#### Why is it worse than `dotnet new classlib`?
+Because commandline runnability involves targetting `netcoreapp3.1` instead of `netstandard2`. Otoh, that's a 20 second edit of the csproj file to fix.
+
+## What Opinions did you carefully avoid?
 
 Add your own choice of logging provider and test framework.
 
