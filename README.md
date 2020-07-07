@@ -1,6 +1,6 @@
 # Consoleable 
 
-A slightly-opinionated `dotnet new` for a component which may be used from the commandline or as an class library
+A slightly-opinionated `dotnet new` template for a component which may be used from the commandline or as an class library
 
 ### Opinions! What Opinions?
 
