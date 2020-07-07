@@ -2,10 +2,14 @@
 
 A slightly-opinionated `dotnet new` template for a component which may be used from the commandline or as an class library
 
-usage:
+Usage:
 
 ```
-dotnet new consoleable [--name MyName] [--xunit] [--nunit] # use the xunit/nunit flags to add a skeleton test project
+dotnet new consoleable [--name MyName] [--xunit] [--nunit] 
+```
+```
+#use the --xunit or --nunit flags to get a skeleton xunit/nunit test project
+#dotnet run the project directory and/or dotnet test the test projects as usual to build and run
 ```
 
 ### Opinions?! What Opinions?
@@ -30,7 +34,7 @@ Because
 Add your own choice of logging provider and test framework.
 
 
-### Adding to a Solution
+### Adding (to a) Solution
 If you use the template in an empty directory, then 
 ```
 dotnet new sln && dotnet sln add Relay Relay.Specx && dotnet test
