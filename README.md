@@ -2,7 +2,7 @@
 
 A slightly-opinionated `dotnet new` template for a component which may be used from the commandline or as an class library
 
-### Opinions! What Opinions?
+### Opinions? What Opinions?
 
 These opinions:
 - When run from a commandline, the `SelfHosting.Startup` class should initialise a `LoggerFactory`, a `Configuration` root, 
