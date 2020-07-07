@@ -1,14 +1,14 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "Chris F Carroll",
-  "classifications": [ "Console" ],
-  "identity": "Consoleable.1",
+  "author": "https://github.com/chrisfcarroll",
+  "classifications": [ "Common", "Console", "ClassLibrary" ],
+  "identity": "consoleable.1",
   "name": "Consoleable Component",
   "shortName": "consoleable",
-  "symbols": {
-    "helloMessage": {
-      "type": "parameter",
-      "replaces": "Hello from a new template!"
-    }
-  }
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Consoleable",
+  "preferNameDirectory": true
 }
