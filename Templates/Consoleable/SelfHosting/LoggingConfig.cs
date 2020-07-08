@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Serilog.Events;
 
 namespace Consoleable.SelfHosting
 {
@@ -19,4 +20,24 @@ namespace Consoleable.SelfHosting
         /// </summary>
         public const string AppSettingsSectionName = "Logging";
     }
+    
+#if serilog
+    static class MsLoggingToSerilogLogLevel
+    {
+        public static LogEventLevel ToSerilogEventLevel(this LogLevel msLevel)
+        {
+            switch (msLevel)
+            {
+                case LogLevel.Critical : return LogEventLevel.Fatal;
+                case LogLevel.Error : return LogEventLevel.Error;
+                case LogLevel.Warning : return LogEventLevel.Warning;
+                case LogLevel.Information : return LogEventLevel.Information;
+                case LogLevel.Debug : return LogEventLevel.Debug;
+                case LogLevel.Trace : return LogEventLevel.Verbose;
+                default:return (LogEventLevel) int.MaxValue;
+            }
+        }
+    }
+
+#endif
 }

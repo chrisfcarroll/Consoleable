@@ -2,6 +2,7 @@
 {
     public class Settings
     {
-        public int Setting1 { get; set; }
+        public string Setting1 { get; set; } =
+            "I have no settings but if I did, this would be a default value";
     }
 }

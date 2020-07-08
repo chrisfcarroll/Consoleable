@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using Consoleable.Dependencies;
 using Microsoft.Extensions.Logging;
 
 namespace Consoleable.SelfHosting
@@ -19,20 +20,15 @@ namespace Consoleable.SelfHosting
 
     static class FallbackLoggerFactoryExtension
     {
-        public static ILoggerFactory AddFallbackLogger(this ILoggerFactory factory, OutputTo consoleorlistofstring, List<string> backingList = null, string name = "ListOfString")
+        public static ILoggerFactory AddFallbackLogger(this ILoggerFactory factory, List<string> backingList, string name = "ListOfString")
         {
             if (factory == null) throw new ArgumentNullException(nameof(factory));
-            if (consoleorlistofstring == OutputTo.Console)
-                throw new ArgumentException($"Can't specify {consoleorlistofstring} with a BackingList",nameof(backingList));
-
             factory.AddProvider(new FallbackLoggerProvider(backingList??new List<string>(), name));
             return factory;
         }
-        public static ILoggerFactory AddFallbackLogger(this ILoggerFactory factory, OutputTo consoleorlistofstring, string name = "Console")
+        public static ILoggerFactory AddFallbackLogger(this ILoggerFactory factory,string name = "Console")
         {
             if (factory == null) throw new ArgumentNullException(nameof(factory));
-            if (consoleorlistofstring == OutputTo.ListOfString)
-                throw new ArgumentException($"Can't specify {consoleorlistofstring} unless you also specify a BackingList",nameof(consoleorlistofstring));
             factory.AddProvider(new FallbackLoggerProvider(name));
             return factory;
         }
@@ -100,22 +96,19 @@ namespace Consoleable.SelfHosting
             {
                 try
                 {
-                    message = formatter(state, exception);
+                    var fState = ((IReadOnlyList<KeyValuePair<string, object>>)state);
+                    var m = 
+                        fState.FirstOrDefault(s => s.Key == "{OriginalFormat}");
+                    var values =
+                        fState.Where(s => s.Key != "{OriginalFormat}")
+                            .Select(v=>v.Key+"="+v.Value.AsJsonElseNull());
+                    message =
+                        $"{m.Value}\n{string.Join("\n", values)}";
                 }
-                catch (FormatException)
+                catch (Exception)
                 {
-                    /*
-                     * https://github.com/aspnet/Logging/issues/767
-                     */
-                    var stateFields = state.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
-                    var values = stateFields.Select(f => f.GetValue(state)).ToArray();
-                    var asJson = JsonSerializer.Serialize(values);
-                    try { message = $"{asJson} {exception}"; }
-                    catch (Exception)
-                    {
-                        message = string.Join('\n', values);
-                        throw;
-                    }
+                    message = formatter(state, exception);
+                    throw;
                 }
             }
             catch (Exception e)

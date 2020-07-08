@@ -1,9 +1,12 @@
 using System;
 using System.IO;
-using Consoleable.Dependencies;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
+#if serilog
+using Serilog;
+using Serilog.Extensions.Logging;
+#endif
 
 namespace Consoleable.SelfHosting
 {
@@ -31,13 +34,13 @@ namespace Consoleable.SelfHosting
         
         /// <summary>
         /// When this assembly is used a self-hosted console application, the ILoggerFactory that will be used
-        /// to create an ILogger to pass to <see cref="Consoleable(Microsoft.Extensions.Logging.ILogger,Consoleable.SelfHosting.Settings)"/> 
+        /// to create an ILogger to pass to <see cref="Consoleable(Microsoft.Extensions.Logging.ILogger,Consoleable.Settings)"/> 
         /// </summary>
         static ILoggerFactory LoggerFactory;
 
         /// <summary>
         /// When this assembly is used a self-hosted console application, the Settings that will be
-        /// passed to <see cref="Consoleable(Microsoft.Extensions.Logging.ILogger,Consoleable.SelfHosting.Settings)"/> 
+        /// passed to <see cref="Consoleable(Microsoft.Extensions.Logging.ILogger,Consoleable.Settings)"/> 
         /// </summary>
         public static Settings Settings= new Settings();
         
@@ -72,45 +75,90 @@ namespace Consoleable.SelfHosting
         /// <param name="factory">Your preferred LoggerFactory. Defaults to <see cref="FallbackLoggerFactory"/>
         /// which will only create instances of <see cref="FallbackLogger"/>, which writes all messages to
         /// <see cref="Console.Out"/></param>
-        /// <returns>A fluently usable <see cref="Instance"/> of the
+        /// <returns>A fluently usable <see cref="FluentStartupAccessor"/> of the
         /// otherwise static <see cref="Startup"/> settings.
         /// </returns>
-        public static Instance Configure(string appSettingsSectionName=nameof(Consoleable), ILoggerFactory factory=null)
+        public static FluentStartupAccessor Configure()
         {
-            LoggerFactory = factory?? new FallbackLoggerFactory();
-            var startupLogger = LoggerFactory.CreateLogger("StartUp");
+            string appSettingsSectionName = nameof(Consoleable);
+            string appSettingsFoundAtPath=null;
+            try
+            {
+                appSettingsFoundAtPath=InitialiseConfigurationAndSettings(appSettingsSectionName);
+                Configuration.GetSection(LoggingConfig.AppSettingsSectionName)
+                    .Bind(LoggingConfig.FromConfig);
+            }
+            catch (Exception e)
+            {
+                var log = InitialiseLoggerFactoryAndStartupLogger(LogLevel.Trace);
+                log.LogError(e, $"At Startup, attempting to read Configuration" +
+                                $" from {appSettingsFoundAtPath}" +
+                                $" from section \"{appSettingsSectionName}\"");
+                throw;
+            }
+            
+            var startupLog = InitialiseLoggerFactoryAndStartupLogger(LoggingConfig.FromConfig.LogLevel);
+            startupLog.LogDebug(
+                "LoggingConfig: {@LoggingConfig}",LoggingConfig
+                    .FromConfig);
+            if (appSettingsFoundAtPath == null)
+            {
+                startupLog.LogWarning("No appsettings.json file found for configuration");
+            }
+            else
+            {
+                startupLog.LogDebug($"Read Configuration" +
+                                       $" from {appSettingsFoundAtPath} " +
+                                       $" section \"{appSettingsSectionName}\"");
+            }
+            startupLog.LogInformation("Settings: {@Settings}",Settings);
+            return new FluentStartupAccessor();
+        }
 
-            appSettingsSectionName ??= nameof(Consoleable);
-            var startupLocation = Path.GetDirectoryName(typeof(Startup).Assembly.Location)??".";
+        static string InitialiseConfigurationAndSettings(string appSettingsSectionName)
+        {
+            var startupLocation = Path.GetDirectoryName(typeof(Startup).Assembly.Location) ?? ".";
             var appsettingsPath = Path.Combine(startupLocation, "appsettings.json");
             if (File.Exists(appsettingsPath))
             {
-                startupLogger.LogInformation($"Found {appsettingsPath}.");
-                
                 Configuration = new ConfigurationBuilder()
                     .SetBasePath(startupLocation)
-                    .AddJsonFile("appsettings.json",false)
+                    .AddJsonFile("appsettings.json", false)
                     .Build();
                 Configuration.GetSection(appSettingsSectionName).Bind(Settings);
-                Configuration.GetSection(LoggingConfig.AppSettingsSectionName).Bind(LoggingConfig.FromConfig);
+                return appsettingsPath;
             }
             else
             {
                 Configuration = new ConfigurationBuilder().Build();
-                Settings=new Settings();
-                startupLogger.LogInformation($"No {appsettingsPath} found.");
+                Settings = new Settings();
+                return null;
             }
+        }
 
-            startupLogger.LogInformation("Settings: {@Settings}",Settings.AsJsonElseNull());
-            startupLogger.LogInformation("LoggingConfig: {@LoggingConfig}",LoggingConfig.FromConfig.AsJsonElseNull());
-            return new Instance();
+        static ILogger InitialiseLoggerFactoryAndStartupLogger(LogLevel logLevel)
+        {
+#if serilog
+            LoggerFactory = new SerilogLoggerFactory(
+                Log.Logger = 
+                    new LoggerConfiguration()
+                    .MinimumLevel.Is( logLevel.ToSerilogEventLevel() )
+                    .Enrich.FromLogContext()
+                    .WriteTo.ColoredConsole()
+                    .CreateLogger());
+#else
+            LoggerFactory = new LoggerFactory().AddFallbackLogger();
+#endif
+            var startupLogger = LoggerFactory.CreateLogger("StartUp");
+            startupLogger.LogDebug($"Log start {DateTime.UtcNow} on {Environment.OSVersion}");
+            return startupLogger;
         }
 
         /// <summary>
         /// A convenience instance of the otherwise static <see cref="Startup"/> which allows
-        /// <see cref="Startup.Configure"/> to be used in fluent style. 
+        /// <see cref="Startup.Configure"/> to be called in fluent style. 
         /// </summary>
-        public class Instance : Startup
+        public class FluentStartupAccessor : Startup
         {
             // ReSharper disable MemberHidesStaticFromOuterClass
             public new IConfiguration Configuration => Startup.Configuration;

@@ -15,7 +15,7 @@ namespace Consoleable
         {
             this.log = log;
             this.settings = settings;
-            log.LogDebug("Created with Settings={@Settings", settings);
+            log.LogDebug("Created with Settings={@Settings}", settings);
         }
         readonly ILogger log;
         readonly Settings settings;
