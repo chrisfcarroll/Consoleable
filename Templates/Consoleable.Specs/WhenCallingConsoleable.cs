@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Extensions.Logging.ListOfString;
 using NUnit.Framework;
+using TestBase;
 
 namespace Consoleable.Specs
 {

@@ -68,10 +68,10 @@ Add your own choice of logging provider and test framework.
 
 ### Adding (to a) Solution
 
-If you use the template in an empty directory, then
+If you use the template in an empty directory, then e.g. 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-dotnet new sln && dotnet sln add Relay Relay.Specx && dotnet test
+dotnet new sln && dotnet sln add Consoleable Consoleable.Specx && dotnet test
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 will create a new solution, add project and tests, and run the tests

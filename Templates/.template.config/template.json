@@ -21,6 +21,16 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"
+    },
+    "testbase": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "sln": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
   "sources":[{
@@ -31,7 +41,47 @@
     {
       "condition": "(!nunit)",
       "exclude": [ "Consoleable.Specs/**/*"]
+    },
+    {
+      "condition": "(testbase)",
+      "exclude": [ "Consoleable.Spec*/Shoulds.cs"]
+    },
+    {
+      "condition": "(!sln)",
+      "exclude": [ "Consoleable.sln"]
     }
     ]
-  }]
+  }],
+  "SpecialCustomOperations": {
+    "**/Consoleable.Spec*.csproj": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "actionableIf": [ "<!--#if" ],
+            "actionableElse": [ "#else", "<!--#else" ],
+            "actionableElseif": [ "#elseif", "<!--#elseif" ],
+            "endif": [ "#endif", "<!--#endif" ],
+            "trim" : "true",
+            "wholeLine": "true",
+          }
+        }
+      ]
+    },
+    "Consoleable.sln": {
+      "operations": [
+        {
+          "type": "conditional",
+          "configuration": {
+            "if": ["#if"],
+            "else": ["#else"],
+            "elseif": ["#elseif", "#elif"],
+            "endif": ["#endif"],
+            "trim" : "true",
+            "wholeLine": "true",
+          }
+        }
+      ]
+    }   
+  }
 }

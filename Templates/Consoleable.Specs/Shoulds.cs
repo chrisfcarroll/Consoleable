@@ -1,30 +1,31 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 
-namespace Consoleable.Specs
+namespace TestBase
 {
-    /// <summary>
-    /// An abbreviation of 
-    /// </summary>
+    /// <summary>Fluent assertions taken from https://nuget.org/packages/TestBase</summary>
     public static class Shoulds
     {
         /// <summary>
         /// Chainably assert that <paramref name="is enumerable"/> is not empty.
-        /// Install package https://nuget.org/packages/TestBase for an extensive set of <c>Should...()</c>s
+        /// Install package https://nuget.org/packages/TestBase for extensive set of
+        /// fluent <c>Should...()</c>s
         /// </summary>
         public static IEnumerable<T> ShouldNotBeEmpty<T>(this IEnumerable<T> enumerable)
         {
-            Assert.IsNotEmpty(enumerable);
+            NUnit.Framework.Assert.IsNotEmpty(enumerable);
             return enumerable;
         }
         
         /// <summary>
         /// Chainably assert that <paramref name="is enumerable"/> is not empty.
-        /// Install package https://nuget.org/packages/TestBase for an extensive set of <c>Should...()</c>s
+        /// Install package https://nuget.org/packages/TestBase for an extensive set of
+        /// fluent <c>Should...()</c>s
         /// </summary>
-        public static IEnumerable<T> ShouldNotBeEmpty<T>(this IEnumerable<T> enumerable, string message, params object[] args)
+        public static IEnumerable<T> 
+            ShouldNotBeEmpty<T>(
+                this IEnumerable<T> enumerable, string message, params object[] args)
         {
-            Assert.IsNotEmpty(enumerable, message, args);
+            NUnit.Framework.Assert.IsNotEmpty(enumerable, message, args);
             return enumerable;
         }
     }

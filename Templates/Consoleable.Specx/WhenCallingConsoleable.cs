@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Extensions.Logging.ListOfString;
+using TestBase;
 using Xunit;
 
 namespace Consoleable.Specx

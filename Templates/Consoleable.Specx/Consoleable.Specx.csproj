@@ -11,16 +11,14 @@
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    <PackageReference Include="Extensions.Logging.ListOfString" Version="4.1.2.5"/>
+    <!--#if (testbase) -->
+    <PackageReference Include="TestBase" Version="4.1.4.3"/>
+    <!--#endif -->
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Consoleable\Consoleable.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Extensions.Logging.ListOfString, Version=4.1.2.5, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\.nuget\packages\extensions.logging.listofstring\4.1.2.5\lib\netstandard1.1\Extensions.Logging.ListOfString.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
