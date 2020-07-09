@@ -44,7 +44,7 @@ https://github.com/chrisfcarroll/Consoleable]]></Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Templates\**\*" Exclude="Templates\**\bin\**;Templates\**\obj\**;**\.DS_Store;**\.idea*\**" />
+    <Content Include="Templates\**\*" Exclude="Templates\**\bin\**;Templates\**\obj\**;Templates\**\.DS_Store;Templates\**\.idea\**" />
     <Compile Remove="**\*" />
   </ItemGroup>
 
