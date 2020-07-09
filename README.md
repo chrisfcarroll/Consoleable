@@ -91,16 +91,22 @@ turned out to be marvellously simple.
 Adding your own favourite boilerplate is only a fork & a pull request away. Unless you have you really obscure minority opinions. In that case, it's only a fork and no pull request away.
 
 
-### How to install locally
+### How to (un)install the Template from NuGet
+
+`dotnet new -i Consoleable`
+`dotnet new -u Consoleable`
+
+
+### How to (un)install locally and edit
 
 ```
 git clone https://github.com/chrisfcarroll/Consoleable
-dotnet new -i ./Consoleable/
-# … do some editing then re-install just by installing the directory again:
-dotnet new -i ./Consoleable/ 
+dotnet new -i ./Consoleable/Templates
+# … do some editing … then re-install just by installing the directory again:
+dotnet new -i ./Consoleable/Templates
 ```
 
-Handily, `dotnet new -u` will not only list installed templates it will also list the exact command line to uninstall.
+`dotnet new -u` required the full absolute path to `./Consoleable/Templates` but if you call it with no path it will handily list each installed template _with_ the exact command to uninstall.
 
 ## Any Examples?
 
