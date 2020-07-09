@@ -4,7 +4,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Extensions.Logging;
 
-namespace Consoleable.SelfHosting
+namespace Consoleable.SelfHosted
 {
     static class UseSerilog
     {

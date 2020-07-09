@@ -3,7 +3,7 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Consoleable.SelfHosting
+namespace Consoleable.SelfHosted
 {
     /// <summary>
     /// When using <see cref="Consoleable"/> as a self-hosted console application, use <see cref="Configure"/>

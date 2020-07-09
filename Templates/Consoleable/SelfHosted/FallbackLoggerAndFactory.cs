@@ -6,7 +6,7 @@ using System.Text;
 using Consoleable.Dependencies;
 using Microsoft.Extensions.Logging;
 
-namespace Consoleable.SelfHosting
+namespace Consoleable.SelfHosted
 {
     class FallbackLoggerFactory: ILoggerFactory
     {

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace Consoleable.SelfHosting
+namespace Consoleable.SelfHosted
 {
     static class ChooseLogger
     {

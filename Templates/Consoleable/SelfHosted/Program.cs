@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 
-namespace Consoleable.SelfHosting
+namespace Consoleable.SelfHosted
 {
     /// <summary>
     /// A commandline wrapper for <see cref="Consoleable"/> which uses <see cref="Startup"/> to
@@ -32,7 +32,7 @@ namespace Consoleable.SelfHosting
             ShowHelpTextAndExitImmediatelyIf(shouldShowHelpThenExit: args.Length == 0);
             ShowHelpTextAndExitImmediatelyIf(HelpOptions.Contains(args[0].TrimStart('/').TrimStart('-')));
             var (someFiles, someKeys) = ParseArgs.GetSomeFileNamesAndKeys(args);
-            ShowHelpTextAndExitImmediatelyIf(someFiles.Length == 0);
+            ShowHelpTextAndExitImmediatelyIf(someFiles.Length == 0 && someKeys.Count==0);
             return (someFiles,someKeys);
         }
 
@@ -60,7 +60,7 @@ Consoleable [your parameters here, for instance: [filename1 [filename2]] [key1=v
                 {
                     if (arg.Contains("="))
                     {
-                        var kv= arg.Split('=', 2);
+                        var kv= arg.Split(new[]{'='}, 2);
                         someKeys.Add( kv[0], kv[1]);
                     }
                     else

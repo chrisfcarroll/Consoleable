@@ -27,6 +27,11 @@
       "datatype": "bool",
       "defaultValue": "false"
     },
+    "serilog": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
     "sln": {
       "type": "parameter",
       "datatype": "bool",
@@ -52,7 +57,7 @@
     },
     {
       "condition": "(!serilog)",
-      "exclude": [ "Consoleable/SelfHosting/UseSerilog.cs"]
+      "exclude": [ "Consoleable/SelfHosted/UseSerilog.cs"]
     }
     ]
   }],
