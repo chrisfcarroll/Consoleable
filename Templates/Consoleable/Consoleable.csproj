@@ -3,7 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <DefineConstants>serilog</DefineConstants>
+    <!--#if (serilog) -->
+    <DefineConstants>erilog</DefineConstants>
+    <!--#endif -->
   </PropertyGroup>
 
   <ItemGroup>

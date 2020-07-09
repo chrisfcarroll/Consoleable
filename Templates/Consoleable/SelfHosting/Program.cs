@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace Consoleable.SelfHosting
 {
@@ -19,7 +20,7 @@ namespace Consoleable.SelfHosting
             Startup.Configure();
             
         new Consoleable(
-                Startup.CreateLogger<Consoleable>(),
+                Startup.LoggerFactory.CreateLogger<Consoleable>(),
                 Startup.Settings
             ).Do();
         }

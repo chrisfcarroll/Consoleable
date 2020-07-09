@@ -2,9 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Text.Json;
 using Consoleable.Dependencies;
 using Microsoft.Extensions.Logging;
 
@@ -32,7 +30,6 @@ namespace Consoleable.SelfHosting
             factory.AddProvider(new FallbackLoggerProvider(name));
             return factory;
         }
-        public enum OutputTo {Console,ListOfString}
     }
 
     class FallbackLogger : ILogger
@@ -46,23 +43,34 @@ namespace Consoleable.SelfHosting
         static readonly string MessagePadding = new string(' ', LogLevel.Information.ToString().Length + LoglevelPadding.Length);
 
         static readonly string NewLineWithMessagePadding = Environment.NewLine + MessagePadding;
+        
         [ThreadStatic] static StringBuilder logBuilder;
         Func<string, LogLevel, bool> filter;
 
-        public FallbackLogger(List<string> backingList, string name=null, Func<string, LogLevel, bool> filter = null, bool includeScopes = true)
+        /// <summary>Defaults to UTC sortable [2020-07-09T15:30:54.003Z]</summary>
+        public Func<string> Timestamp { get; set; } = () => 
+            DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+
+        public FallbackLogger(List<string> backingList, string name=null, Func<string, 
+        LogLevel, bool> filter = null, bool includeScopes = true, Func<string> 
+        timestamp=null)
         {
             Name = name ?? String.Empty;
             Filter = filter ?? ((category, logLevel) => true);
             IncludeScopes = includeScopes;
             LoggedLines = backingList ?? new List<string>();
             Output = LoggedLines.Add;
+            Timestamp = timestamp ?? Timestamp;
         }
-        public FallbackLogger(string name, Func<string, LogLevel, bool> filter = null, bool includeScopes = true)
+        public FallbackLogger(string name,
+            Func<string, LogLevel, bool> filter = null, bool includeScopes = true, 
+            Func<string> timestamp=null)
         {
             Name = name ?? String.Empty;
             Filter = filter ?? ((category, logLevel) => true);
             IncludeScopes = includeScopes;
             Output = Console.WriteLine;
+            Timestamp = timestamp ?? Timestamp;
         }
 
         public List<string> LoggedLines { get; }
@@ -90,7 +98,7 @@ namespace Consoleable.SelfHosting
                                 Func<TState, Exception, string> formatter)
         {
             if (!IsEnabled(logLevel)) return;
-            if (formatter == null) throw new ArgumentNullException(nameof(formatter));
+            
             var message = "";
             try
             {
@@ -107,6 +115,7 @@ namespace Consoleable.SelfHosting
                 }
                 catch (Exception)
                 {
+                    if (formatter == null) throw new ArgumentNullException(nameof(formatter));
                     message = formatter(state, exception);
                     throw;
                 }
@@ -149,7 +158,9 @@ namespace Consoleable.SelfHosting
             }
 
             if (exception      != null) builder.AppendLine(exception.ToString());
-            if (builder.Length > 0) Output($"[{logLevel.ToString()}] {builder}");
+            if (builder.Length > 0) Output($"[{logLevel.ToString()}]" +
+                       $"[{Timestamp()}]" +
+                       $" {builder}");
 
             builder.Clear();
             if (builder.Capacity > 1024) builder.Capacity = 1024;
@@ -179,20 +190,18 @@ namespace Consoleable.SelfHosting
     {
         static readonly Func<string, LogLevel, bool> FalseFilter = (cat, level) => false;
         static readonly Func<string, LogLevel, bool> TrueFilter = (cat, level) => true;
-        static readonly Func<string, LogLevel, bool> FromConfigFilter =
-                            (cat, level) => level >= LoggingConfig.FromConfig.LogLevel;
         readonly Func<string, LogLevel, bool> filter;
         readonly bool includeScopes;
 
         public FallbackLoggerProvider()
         {
-            filter = FromConfigFilter;
+            filter = TrueFilter;
             includeScopes = true;
         }
 
         public FallbackLoggerProvider(List<String> backingList, string name = null, Func<string, LogLevel, bool> filter = null, bool includeScopes = true)
         {
-            this.filter = filter ?? FromConfigFilter;
+            this.filter = filter ?? TrueFilter;
             this.includeScopes = includeScopes;
             if (name!= null && backingList == null) CreateLogger(name);
             FallbackLogger.Loggers.GetOrAdd(name ?? String.Empty, n => new FallbackLogger(backingList, n, this.filter, this.includeScopes));
@@ -215,6 +224,6 @@ namespace Consoleable.SelfHosting
             return new FallbackLogger(name, GetFilter(), includeScopes);
         }
 
-        Func<string, LogLevel, bool> GetFilter() { return filter ?? FromConfigFilter; }
+        Func<string, LogLevel, bool> GetFilter() { return filter ?? TrueFilter; }
     }
 }

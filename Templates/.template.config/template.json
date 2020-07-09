@@ -49,6 +49,10 @@
     {
       "condition": "(!sln)",
       "exclude": [ "Consoleable.sln"]
+    },
+    {
+      "condition": "(!serilog)",
+      "exclude": [ "Consoleable/SelfHosting/UseSerilog.cs"]
     }
     ]
   }],
