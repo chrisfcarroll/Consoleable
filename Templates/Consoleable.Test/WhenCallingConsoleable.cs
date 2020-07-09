@@ -4,7 +4,7 @@ using Extensions.Logging.ListOfString;
 using TestBase;
 using Xunit;
 
-namespace Consoleable.Specx
+namespace Consoleable.Test
 {
     public class WhenCallingConsoleable
     {

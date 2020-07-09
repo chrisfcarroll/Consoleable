@@ -4,7 +4,7 @@ using Extensions.Logging.ListOfString;
 using NUnit.Framework;
 using TestBase;
 
-namespace Consoleable.Specs
+namespace Consoleable.Tests
 {
     public class WhenCallingConsoleable
     {

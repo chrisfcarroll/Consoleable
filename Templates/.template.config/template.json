@@ -41,15 +41,15 @@
   "sources":[{
     "modifiers": [{
       "condition": "(!xunit)",
-      "exclude": [ "Consoleable.Specx/**/*"]
+      "exclude": [ "Consoleable.Test/**/*"]
     },
     {
       "condition": "(!nunit)",
-      "exclude": [ "Consoleable.Specs/**/*"]
+      "exclude": [ "Consoleable.Tests/**/*"]
     },
     {
       "condition": "(testbase)",
-      "exclude": [ "Consoleable.Spec*/Shoulds.cs"]
+      "exclude": [ "Consoleable.Test*/Shoulds.cs"]
     },
     {
       "condition": "(!sln)",

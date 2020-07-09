@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Consoleable.Dependencies;
 using Microsoft.Extensions.Logging;
 
 namespace Consoleable.SelfHosted

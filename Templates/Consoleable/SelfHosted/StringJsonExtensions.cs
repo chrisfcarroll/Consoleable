@@ -1,8 +1,8 @@
 using System.Text.Json;
 
-namespace Consoleable.Dependencies
+namespace Consoleable.SelfHosted
 {
-    public static class StringJsonExtensions
+    static class StringJsonExtensions
     {
         /// <summary>Serialize <paramref name="value"/> as a Json string.</summary>
         /// <param name="value">the object to serialize</param>

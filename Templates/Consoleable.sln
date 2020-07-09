@@ -6,11 +6,11 @@ MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consoleable", "Consoleable\Consoleable.csproj", "{16337B8C-30D5-45E7-9BE8-40784D9CA231}"
 EndProject
 #if (xunit)
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consoleable.Specx", "Consoleable.Specx\Consoleable.Specx.csproj", "{C70CFB4D-A860-4489-8C8B-4BD6A141C2F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consoleable.Test", "Consoleable.Test\Consoleable.Test.csproj", "{C70CFB4D-A860-4489-8C8B-4BD6A141C2F3}"
 EndProject
 #endif
 #if (nunit)
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consoleable.Specs", "Consoleable.Specs\Consoleable.Specs.csproj", "{C1BE7C6C-FA1D-476D-81C6-FB296187F799}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consoleable.Tests", "Consoleable.Tests\Consoleable.Tests.csproj", "{C1BE7C6C-FA1D-476D-81C6-FB296187F799}"
 EndProject
 #endif
 Global

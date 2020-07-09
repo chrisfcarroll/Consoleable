@@ -5,10 +5,16 @@
     <PackageVersion>1.0</PackageVersion>
     <PackageId>Consoleable</PackageId>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
-    <Title>Consoleable Template for a command-lineable component</Title>
+    <PackageProjectUrl>https://github.com/chrisfcarroll/Consoleable</PackageProjectUrl>
+    <PackageTags>dotnet-new;templates;console;nunit;test;testbase</PackageTags>
+    <Copyright>(c) Chris F. Carroll, 2013-2020</Copyright>
     <Authors>https://github.com/chrisfcarroll</Authors>
+    <Owners>Chris F Carroll</Owners>
+    <RepositoryUrl>https://github.com/chrisfcarroll/Consoleable</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Title>Consoleable Template for a command-lineable component</Title>
     <Description><![CDATA[A very-slightly-opinionated `dotnet new` template for a component which may be used
-from the commandline or as an class library
+from the commandline or as an class library.
 
 Usage:
 
@@ -25,7 +31,12 @@ dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 https://github.com/chrisfcarroll/Consoleable]]></Description>
-    <PackageTags>dotnet-new;templates;console</PackageTags>
+    <PackageReleaseNotes>
+      ChangeLog
+      ---------
+      1.0 First release supports xunit, nunit, serilog, testbase
+    </PackageReleaseNotes>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
