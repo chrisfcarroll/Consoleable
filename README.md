@@ -6,29 +6,23 @@ from the commandline or as an class library
 
 Usage:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [--testbase]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # --xunit : also generate a skeleton xunit test project for the new project
 # --nunit : also generate a skeleton nunit test project for the new project
 # --sln : also generate a solution file referencing the new project(s).
 # --serilog : use Serilog for logging
 # --testbase : use TestBase fluent assertions for your tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To easily add new projects to an existing solution, run the command from the
-solution directory then use `dotnet sln add ...`.
-
-Confirm your new project builds with `dotnet run` in the project directory. Run
-tests with a `dotnet test` in the test or solution directory.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Long Example
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 dotnet new consoleable --name Freddie --xunit --testbase --sln --serilog && cd Freddie && dotnet test && cd Freddie && dotnet run
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Opinions?! What Opinions?
 
@@ -44,7 +38,7 @@ These opinions:
 -   Those three things should work straight out of the box when you use the
     template, and then be instantly editable to your own favourite logging,
     configuration and/or settings solution. “Work straight out of the box” means
-    that you can `dotnet run` and `dotnet test` immediatly after creating the
+    that you can `dotnet run` and `dotnet test` immediately after creating the
     new project.
 
 -   The command-line should do some elementary argument parsing and if
@@ -100,16 +94,15 @@ fork and no pull request away.
 
 ### How to (un)install locally and edit
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 git clone https://github.com/chrisfcarroll/Consoleable
 dotnet new -i ./Consoleable/Templates
 # … do some editing … then re-install just by installing the directory again:
 dotnet new -i ./Consoleable/Templates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`dotnet new -u` will want the full absolute path to `./Consoleable/Templates`
-but if you call it with no path it will handily list each installed template
-*with* the exact command to uninstall.
+`dotnet new -u` with no path will neatly tell you the exact command to uninstall
+any template.
 
 Any Examples?
 -------------
