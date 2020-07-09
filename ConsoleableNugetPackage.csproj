@@ -7,7 +7,7 @@
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <Title>Consoleable Template for a command-lineable component</Title>
     <Authors>https://github.com/chrisfcarroll</Authors>
-    <Description><![CDATA[A slightly-opinionated `dotnet new` template for a component which may be used
+    <Description><![CDATA[A very-slightly-opinionated `dotnet new` template for a component which may be used
 from the commandline or as an class library
 
 Usage:
@@ -24,76 +24,7 @@ dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [
 # --testbase : add TestBase fluent assertions to your test project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Long Example
-
-```
-dotnet new consoleable --name Freddie --xunit --testbase --sln --serilog && cd Freddie && dotnet test && cd Freddie && dotnet run
-```
-
-### Opinions?! What Opinions?
-
-These opinions:
-
--   Anything bigger than ½ a day's work wants testability, instrumentation and 
-    configurability, but we really don't want to write all that boilerplate again
-    every. single. time.
-
--   When run from a commandline, you want an `ILoggerFactory`, an `IConfigurationRoot`, 
-    and a `Settings` object.
-
--   Those three things should work straight out of the box when you use the
-    template, and then be instantly editable to your own favourite logging,
-    configuration and/or settings solution. “Work straight out of the box” means
-    that you can `dotnet run` and `dotnet test` immediatly after creating
-    the new project.
-
--   The command-line should do some elementary argument parsing and if
-    appropriate show help text and immediately exit.
-
--   These *command-line Concerns* should stay out of your way and be 
-    ever-so-neatly separated from the Concerns of your component's functionality.
-
-### Why is it better than `dotnet new console`?
-
-Because
-
-1.  It cleanly separates the concerns of Your Component from the concerns of
-    being a Self-hosted Command-line Tool
-
-2.  It addresses the concerns of being a command-line tool for you, out of the
-    box, saving you the grunt work.
-
-3.  You can easily replace the opinions with your own.
-
-
-### Why is it better than `dotnet new classlib`?
-
-Who doesn't secretly want their components to be independently usable
-and testable from the commandline?  
-
-### Comments
-
-I borrowed the opinion that a Startup class was a good place to configure a Logger, ConfigurationRoot and Settings from AspNetCore.
-
-Adding my favourite boilerplate (xunit,nunit,serilog,testbase) as commandline options
-turned out to be marvellously simple. 
-
-Adding your own favourite boilerplate is only a fork & a pull request away. Unless you have you really obscure minority opinions. In that case, it's only a fork and no pull request away.
-
-### How to (un)install the Template
-
-`dotnet new -i Consoleable`
-`dotnet new -u Consoleable`
-
-What Opinions did you (not) carefully avoid?
---------------------------------------
-
-- You can add your own choice of logging provider and test framework.
-
-- Dotnet rocks, serilog is great, other logging frameworks are also available, 
-there's nothing to choose between NUnit & xUnit except taste and 15 years of
-assertion helpers, tests should express the specification, and are best written
-as WhenXGivenYThenZ, NFRs can be tested, TestBase fluent assertions are also great.]]></Description>
+https://github.com/chrisfcarroll/Consoleable]]></Description>
     <PackageTags>dotnet-new;templates;console</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>

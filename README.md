@@ -18,40 +18,41 @@ dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [
 # --testbase : use TestBase fluent assertions for your tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To easily add new projects to an existing solution, run the command from the 
+To easily add new projects to an existing solution, run the command from the
 solution directory then use `dotnet sln add ...`.
 
-Confirm your new project builds with `dotnet run` in the project directory.
-Run tests with a `dotnet test` in the test or solution directory.
+Confirm your new project builds with `dotnet run` in the project directory. Run
+tests with a `dotnet test` in the test or solution directory.
 
 Long Example
 
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 dotnet new consoleable --name Freddie --xunit --testbase --sln --serilog && cd Freddie && dotnet test && cd Freddie && dotnet run
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Opinions?! What Opinions?
 
 These opinions:
 
--   Anything bigger than ½ a day's work wants testability, instrumentation and 
-    configurability, but we really don't want to write all that boilerplate again
-    every. single. time.
+-   Anything bigger than ½ a day's work wants testability, instrumentation and
+    configurability, but we really don't want to write all that boilerplate
+    again every. single. time.
 
--   When run from a commandline, you want an `ILoggerFactory`, an `IConfigurationRoot`, 
-    and a `Settings` object.
+-   When run from a commandline, you want an `ILoggerFactory`, an
+    `IConfigurationRoot`, and a `Settings` object.
 
 -   Those three things should work straight out of the box when you use the
     template, and then be instantly editable to your own favourite logging,
     configuration and/or settings solution. “Work straight out of the box” means
-    that you can `dotnet run` and `dotnet test` immediatly after creating
-    the new project.
+    that you can `dotnet run` and `dotnet test` immediatly after creating the
+    new project.
 
 -   The command-line should do some elementary argument parsing and if
     appropriate show help text and immediately exit.
 
--   These *command-line Concerns* should stay out of your way and be 
-    ever-so-neatly separated from the Concerns of your component's functionality.
+-   These *command-line Concerns* should stay out of your way and be
+    ever-so-neatly separated from the Concerns of your component's
+    functionality.
 
 ### Why is it better than `dotnet new console`?
 
@@ -65,63 +66,67 @@ Because
 
 3.  You can easily replace the opinions with your own.
 
-
 ### Why is it better than `dotnet new classlib`?
 
-Who doesn't secretly want their components to be independently usable
-and testable from the commandline?  
-
+Who doesn't secretly want their components to be independently usable and
+testable from the commandline?
 
 #### Why is it worse than `dotnet new classlib`?
 
 Because it will take you 20 seconds to edit the .csproj files, remove the
-`<TargetFramework>netcoreapp3.1</TargetFramework>` and 
-uncomment the `<TargetFramework>netstandard2.0</TargetFramework>`
+`<TargetFramework>netcoreapp3.1</TargetFramework>` and uncomment
+`<TargetFramework>netstandard2.0</TargetFramework>`
 
-commandline runnability involves targetting `netcoreapp3.1` instead of
-`netstandard2`. Otoh, that's a 20 second edit of the `.csproj` file to fix.
+(Command line runnability involves targetting a `netcoreapp` version instead of
+a `netstandard`)
 
 ### Comments
 
-I borrowed the opinion that a Startup class was a good place to configure a Logger, ConfigurationRoot and Settings from AspNetCore.
+I borrowed the opinion from AspNetCore that a Startup class was a good place to
+configure a Logger, ConfigurationRoot and Settings.
 
-Adding my favourite boilerplate (xunit,nunit,serilog,testbase) as commandline options
-turned out to be marvellously simple. 
+Adding my favourite boilerplate (xunit,nunit,serilog,testbase) as commandline
+options turned out to be marvellously simple.
 
-Adding your own favourite boilerplate is only a fork & a pull request away. Unless you have you really obscure minority opinions. In that case, it's only a fork and no pull request away.
-
+Adding your own favourite boilerplate is only a fork & a pull request away.
+Unless you have you really obscure minority opinions. In that case, it's only a
+fork and no pull request away.
 
 ### How to (un)install the Template from NuGet
 
 `dotnet new -i Consoleable`
-`dotnet new -u Consoleable`
 
+`dotnet new -u Consoleable`
 
 ### How to (un)install locally and edit
 
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 git clone https://github.com/chrisfcarroll/Consoleable
 dotnet new -i ./Consoleable/Templates
 # … do some editing … then re-install just by installing the directory again:
 dotnet new -i ./Consoleable/Templates
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`dotnet new -u` required the full absolute path to `./Consoleable/Templates` but if you call it with no path it will handily list each installed template _with_ the exact command to uninstall.
+`dotnet new -u` will want the full absolute path to `./Consoleable/Templates`
+but if you call it with no path it will handily list each installed template
+*with* the exact command to uninstall.
 
-## Any Examples?
+Any Examples?
+-------------
 
-https://nuget.org/packages/MailMerge was the somewhat messier forerunner to this template.
+https://nuget.org/packages/MailMerge was the somewhat messier forerunner to this
+template.
 
 What Opinions did you carefully avoid?
 --------------------------------------
 
 You can add your own choice of logging provider and test framework.
 
-
 What Opinions did you not carefully avoid?
---------------------------------------
+------------------------------------------
 
-Dotnet rocks, serilog is great, other logging frameworks are also available, 
+Dotnet rocks, serilog is great, other logging frameworks are also available,
 there's nothing to choose between NUnit & xUnit except taste and 15 years of
-assertion helpers, tests should express the specification, and are best written
-as WhenXGivenYThenZ, NFRs can be tested, TestBase fluent assertions are also great.
+assertion helpers, tests should express the specification which is often best
+written as WhenXGivenYThenZ, NFRs can be tested, TestBase fluent assertions are
+great.
