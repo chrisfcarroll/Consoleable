@@ -6,23 +6,23 @@ from the commandline or as an class library
 
 Usage:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [--testbase]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # --xunit : also generate a skeleton xunit test project for the new project
 # --nunit : also generate a skeleton nunit test project for the new project
 # --sln : also generate a solution file referencing the new project(s).
 # --serilog : use Serilog for logging
-# --testbase : use TestBase fluent assertions for your tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# --testbase : use TestBase fluent assertions in your tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Long Example
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 dotnet new consoleable --name Freddie --xunit --testbase --sln --serilog && cd Freddie && dotnet test && cd Freddie && dotnet run
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Opinions?! What Opinions?
 
@@ -67,12 +67,11 @@ testable from the commandline?
 
 #### Why is it worse than `dotnet new classlib`?
 
-Because it will take you 20 seconds to edit the .csproj files, remove the
-`<TargetFramework>netcoreapp3.1</TargetFramework>` and uncomment
-`<TargetFramework>netstandard2.0</TargetFramework>`
+Command line runnables must target a `netcoreapp` version instead of 
+`netstandard`. You can revert to netstandard by editing the 
+csproj file: remove `<TargetFramework>netcoreapp3.1</TargetFramework>` 
+and uncomment the `netstandard2.0` line.
 
-(Command line runnability involves targetting a `netcoreapp` version instead of
-a `netstandard`)
 
 ### Comments
 
@@ -94,12 +93,12 @@ fork and no pull request away.
 
 ### How to (un)install locally and edit
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 git clone https://github.com/chrisfcarroll/Consoleable
 dotnet new -i ./Consoleable/Templates
 # … do some editing … then re-install just by installing the directory again:
 dotnet new -i ./Consoleable/Templates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `dotnet new -u` with no path will neatly tell you the exact command to uninstall
 any template.
