@@ -39,9 +39,9 @@ namespace Consoleable.SelfHosted
         static readonly string[] HelpOptions = {"?", "h","help"};
 
         const string ConsoleHelpText = @"
-Consoleable parameter1 parameter2 [filename1 [filename2]] [key1=value1 [key2=value2]]] 
+Consoleable parameter1 [ parameter2 ] [ key1=value1 [ key2=value2 ]]]
 
-    Modify this help text to show the parameters usable by your component from a console command line
+    Example help text for commandline usage.
 
     You might mention that Settings can be read from the appsettings.json file.
     
