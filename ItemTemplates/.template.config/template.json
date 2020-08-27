@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "https://github.com/chrisfcarroll",
+  "classifications": [ "Common", "Code" ],
+  "identity": "consoleable.extensions.string",
+  "name": "[Consoleable] String and Json Extensions",
+  "shortName": "cons-stringext",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  }
+}
