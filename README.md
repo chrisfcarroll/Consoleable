@@ -4,7 +4,26 @@ Consoleable
 A slightly-opinionated `dotnet new` template for a component which may be used
 from the commandline or as an class library
 
-Usage:
+## How to (un)install the Template from NuGet
+
+`dotnet new -i Consoleable`
+
+`dotnet new -u Consoleable`
+
+## How to isntead (un)install locally and edit to taste
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+git clone https://github.com/chrisfcarroll/Consoleable
+dotnet new -i ./Consoleable/Templates
+# … do some editing … then re-install just by installing the directory again:
+dotnet new -i ./Consoleable/Templates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`dotnet new -u` with no path will neatly tell you the exact command to uninstall
+any template.
+
+
+## Usage once installed
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [--testbase]
@@ -24,7 +43,7 @@ Long Example
 dotnet new consoleable --name Freddie --xunit --testbase --sln --serilog && cd Freddie && dotnet test && cd Freddie && dotnet run
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-### Opinions?! What Opinions?
+### Opinions? What Opinions?
 
 These opinions:
 
@@ -85,24 +104,6 @@ Adding your own favourite boilerplate is only a fork & a pull request away.
 Unless you have you really obscure minority opinions. In that case, it's only a
 fork and no pull request away.
 
-### How to (un)install the Template from NuGet
-
-`dotnet new -i Consoleable`
-
-`dotnet new -u Consoleable`
-
-### How to (un)install locally and edit
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-git clone https://github.com/chrisfcarroll/Consoleable
-dotnet new -i ./Consoleable/Templates
-# … do some editing … then re-install just by installing the directory again:
-dotnet new -i ./Consoleable/Templates
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-`dotnet new -u` with no path will neatly tell you the exact command to uninstall
-any template.
-
 Any Examples?
 -------------
 
@@ -114,11 +115,11 @@ What Opinions did you carefully avoid?
 
 You can add your own choice of logging provider and test framework.
 
-What Opinions did you not carefully avoid?
+What Opinions did you *not* carefully avoid?
 ------------------------------------------
 
-Dotnet rocks, serilog is great, other logging frameworks are also available,
+Dotnet rocks; serilog is great; other logging frameworks are available;
 there's nothing to choose between NUnit & xUnit except taste and 15 years of
-assertion helpers, tests should express the specification which is often best
-written as WhenXGivenYThenZ, NFRs can be tested, TestBase fluent assertions are
+assertion helpers; tests should express the specification which is often best
+written as WhenXGivenYThenZ; NFRs can be tested; TestBase fluent assertions are
 great.
