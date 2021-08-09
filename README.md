@@ -7,7 +7,7 @@ from the commandline or as an class library
 ## Install & uninstall the template from NuGet
 
 `dotnet new -i Consoleable`
-
+`dotnet new consoleable --help`
 `dotnet new -u Consoleable`
 
 ## Or, install & uninstall locally and edit to taste
@@ -15,6 +15,7 @@ from the commandline or as an class library
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 git clone https://github.com/chrisfcarroll/Consoleable
 dotnet new -i ./Consoleable/Templates
+dotnet new consoleable --help
 # … do some editing … then re-install just by installing the directory again:
 dotnet new -i ./Consoleable/Templates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
