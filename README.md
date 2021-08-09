@@ -4,13 +4,13 @@ Consoleable
 A slightly-opinionated `dotnet new` template for a component which may be used
 from the commandline or as an class library
 
-## How to (un)install the Template from NuGet
+## Install & uninstall the template from NuGet
 
 `dotnet new -i Consoleable`
 
 `dotnet new -u Consoleable`
 
-## How to isntead (un)install locally and edit to taste
+## Or, install & uninstall locally and edit to taste
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 git clone https://github.com/chrisfcarroll/Consoleable
