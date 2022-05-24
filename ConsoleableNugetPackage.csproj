@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.0.1</PackageVersion>
+    <PackageVersion>3.1.0.0</PackageVersion>
     <PackageId>Consoleable</PackageId>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/chrisfcarroll/Consoleable</PackageProjectUrl>
@@ -34,6 +34,7 @@ https://github.com/chrisfcarroll/Consoleable]]></Description>
     <PackageReleaseNotes>
       ChangeLog
       ---------
+      3.1 No changes. Bumped to version 3.1 just so that the version number matches the netcore framework version referenced in the csproj's Framework property. 
       1.0 First release supports xunit, nunit, serilog, testbase
     </PackageReleaseNotes>
     <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
