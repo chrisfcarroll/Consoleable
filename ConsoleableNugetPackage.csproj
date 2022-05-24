@@ -13,8 +13,9 @@
     <RepositoryUrl>https://github.com/chrisfcarroll/Consoleable</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Title>Consoleable Template for a command-lineable component</Title>
-    <Description><![CDATA[A very-slightly-opinionated `dotnet new` template for a component which may be used
-from the commandline or as an class library.
+    <Description><![CDATA[A slightly-opinionated `dotnet new` template for a component classlib which also runs
+from the commandline. The opinions are that logging, configuration and testing are good 
+things, but should each be opt-in and should then work out of the box.
 
 Usage:
 
@@ -34,7 +35,7 @@ https://github.com/chrisfcarroll/Consoleable]]></Description>
     <PackageReleaseNotes>
       ChangeLog
       ---------
-      5.0 Updated targetframework to net50 and updated optional dependencies (xunit, nunit, serilog, microsoft.extensions) to newest available as at May 2022. Added [--netstandard2] parameter
+      5.0 Updated targetframework to net50 and updated optional dependencies (xunit, nunit, serilog, microsoft.extensions) to newest available as at May 2022. Added [--netstandard2] option
       3.1 No changes. Bumped to version 3.1 just so that the version number matches the netcore framework version referenced in the csproj's Framework property. 
       1.0 First release supports xunit, nunit, serilog, testbase
     </PackageReleaseNotes>
