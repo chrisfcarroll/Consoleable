@@ -1,7 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!--#if (net5) -->
     <TargetFramework>net5.0</TargetFramework>
+    <!--#else-->
+    <TargetFramework>net6.0</TargetFramework>
+    <!--#endif-->
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

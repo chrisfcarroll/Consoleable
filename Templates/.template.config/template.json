@@ -37,6 +37,11 @@
       "datatype": "bool",
       "defaultValue": "false"
     },
+    "net5": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
     "netstandard2": {
       "type": "parameter",
       "datatype": "bool",

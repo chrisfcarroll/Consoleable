@@ -3,9 +3,12 @@
   <PropertyGroup>
     <!--#if (netstandard2) -->
     <TargetFramework>netstandard2.0</TargetFramework>
-    <!--#else-->
+    <!--#elif (net5) -->
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <!--#else-->
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
     <!--#endif-->
     <!--#if (serilog) -->
     <DefineConstants>serilog</DefineConstants>

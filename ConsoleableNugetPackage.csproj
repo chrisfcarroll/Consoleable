@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>5.0.0</PackageVersion>
+    <PackageVersion>6.0.0</PackageVersion>
     <PackageId>Consoleable</PackageId>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/chrisfcarroll/Consoleable</PackageProjectUrl>
@@ -29,12 +29,14 @@ dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [
 # --sln : also generate a solution file referencing the new project(s).
 # --serilog : use Serilog for logging
 # --testbase : add TestBase fluent assertions to your test project
+# --net5 | --netstandard2 : generate projects with the given framework target instead of net6 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 https://github.com/chrisfcarroll/Consoleable]]></Description>
     <PackageReleaseNotes>
       ChangeLog
       ---------
+      6.0 Updated targetframework to net60. Added [--net5] option
       5.0 Updated targetframework to net50 and updated optional dependencies (xunit, nunit, serilog, microsoft.extensions) to newest available as at May 2022. Added [--netstandard2] option
       3.1 No changes. Bumped to version 3.1 just so that the version number matches the netcore framework version referenced in the csproj's Framework property. 
       1.0 First release supports xunit, nunit, serilog, testbase
