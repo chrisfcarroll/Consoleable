@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>3.1.0.0</PackageVersion>
+    <PackageVersion>5.0.0</PackageVersion>
     <PackageId>Consoleable</PackageId>
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/chrisfcarroll/Consoleable</PackageProjectUrl>
     <PackageTags>dotnet-new;templates;console;nunit;test;testbase</PackageTags>
-    <Copyright>(c) Chris F. Carroll, 2013-2020</Copyright>
+    <Copyright>(c) Chris F. Carroll, 2013-2022</Copyright>
     <Authors>https://github.com/chrisfcarroll</Authors>
     <Owners>Chris F Carroll</Owners>
     <RepositoryUrl>https://github.com/chrisfcarroll/Consoleable</RepositoryUrl>
@@ -19,7 +19,7 @@ from the commandline or as an class library.
 Usage:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [--testbase]
+dotnet new consoleable [--name MyName] [--xunit] [--nunit] [--sln] [--serilog] [--testbase] [--netstandard2]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,6 +34,7 @@ https://github.com/chrisfcarroll/Consoleable]]></Description>
     <PackageReleaseNotes>
       ChangeLog
       ---------
+      5.0 Updated targetframework to net50 and updated optional dependencies (xunit, nunit, serilog, microsoft.extensions) to newest available as at May 2022. Added [--netstandard2] parameter
       3.1 No changes. Bumped to version 3.1 just so that the version number matches the netcore framework version referenced in the csproj's Framework property. 
       1.0 First release supports xunit, nunit, serilog, testbase
     </PackageReleaseNotes>

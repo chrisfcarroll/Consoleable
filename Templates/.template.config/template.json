@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "https://github.com/chrisfcarroll",
   "classifications": [ "Common", "Console", "ClassLibrary" ],
-  "identity": "consoleable.1",
+  "identity": "consoleable.5",
   "name": "Consoleable Component",
   "shortName": "consoleable",
   "tags": {
@@ -33,6 +33,11 @@
       "defaultValue": "false"
     },
     "sln": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "netstandard2": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false"
